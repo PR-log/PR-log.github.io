@@ -1,0 +1,27 @@
+파일 100개 카피하는 프로그램
+시간측정
+
+import shutil
+import time
+
+
+def file_copy():
+	s = time.time()
+	for i in range(1, 101):
+		print("i = ", i)
+		dst = "tmp/a_"+str(i) + ".py"
+		print("dst = ", dst)
+		shutil.copyfile("tmp/a.deb", dst)
+	e = time.time()
+	elapsed_time = e - s 
+
+	print(f"Elapsed time = {elapsed_time} sec")
+"""
+	A func_A calls a func_B
+	func_B(src, dst)
+	src directory의 모든 파일을 dst directory로 복사
+	dst : dir_1, dir2, ... dir_100 
+"""
+
+if __name__ == "__main__":
+	file_copy()

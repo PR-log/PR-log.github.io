@@ -1,0 +1,38 @@
+### 파일 카피하기 (2022.01.03)
+
+import os
+import time
+import shutil
+
+'''
+file_copy(src, dst)
+copy ./test1/test1.py to ./test2/test[1,2,..100].py
+'''                         
+                       
+
+def file_copy(src, dst):
+    print("func: file_copy")
+    #src_f = os.path.join(src, "1.py")
+    src_f = src + ".py"
+    s = time.time()
+    print("123")
+    for i in range(2, 101):
+        #dst_f = dst + "/test" + str(i) + ".py"   # dst="/test2"  
+        dst_f = os.path.join(dst, "test"+str(i)+".py")
+        # dst_f = dst + str(i) + ".py"  
+        # "test2"
+        print("src_f =", src_f)
+        print("dst_f = ", dst_f)
+        shutil.copyfile(src_f, dst_f)
+    e = time.time()
+    elapsed_time = e - s
+    
+    print(f"elapsed_time = {elapsed_time} sec")    
+
+if __name__ == "__main__":      
+    src = "./test1"
+    dst = "./test2"  
+    try: 
+        file_copy(src, dst)
+    except Exception as ex:
+        print(f"Error : {ex}")

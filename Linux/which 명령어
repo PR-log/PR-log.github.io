@@ -1,0 +1,15 @@
+명령어 위치 찾아줌 (2022/01/06)
+
+참고(https://webdir.tistory.com/158)
+
+which find
+-> /bin/find  # 특정명령어 위치 찾아줌
+
+which -a find
+-> /bin/find
+  /usr/bin/find #검색가능 모든경로에서 찾음
+  
+  
+  whereis find  #명령어의 실행파일위치, 소스, man페이지파일 위치 찾아줌
+  ->find: /usr/bin/find /usr/share/man/man1/find.1.gz /usr/share/info/find.info-2.gz /usr/share/info/find.info.gz /usr/share/info/find.info-1.gz
+  

@@ -1,0 +1,120 @@
+소켓 프로그래밍 예제 구동 (2022/1/21)
+
+simple
+
+server socket
+
+import socket
+
+HOST = '127.0.0.1'
+PORT = 9999
+
+client_socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+
+client_socket.connect((HOST, PORT))
+
+while True:
+
+    message = input('EnterMessage:')
+    if message == 'quit':
+        break
+
+    client_socket.send(message.encode())
+    data = client_socket.recv(1024)
+
+    print('Received from the server:', repr(data.decode()))
+    
+
+client_socket.close()
+
+
+client socket
+
+import socket
+
+HOST = '127.0.0.1'
+PORT = 9999
+
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client_socket.connect((HOST, PORT))
+client_socket.sendall('안녕'.encode())
+data = client_socket.recv(1024)
+print('Received', repr(data.decode()))
+
+client_socket.close
+
+
+
+
+use thread echo server
+
+multi-server
+
+import socket
+from _thread import *
+
+def threaded(client_socket,addr):
+    print('Connected by;', addr[0], ':', addr[1])
+
+    while True:
+        try:
+
+            data = client_socket.recv(1024)
+
+            if not data:
+                print('Disconnected by' + addr[0], ':', addr[1])
+                break
+            print('Recived from' + addr[0],':', addr[1] , data.decode())
+
+            client_socket.send(data)
+
+        except ConnectionResetError as e:
+            print('Disconnected by' + addr[0], ':', addr[1])
+            break
+    
+    client_socket.close()
+
+HOST = '127.0.0.1'
+PORT = 9999
+
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+server_socket.bind((HOST, PORT))
+server_socket.listen()
+
+print('server start')
+
+while True:
+    print('wait')
+    client_socket, addr = server_socket. accept()
+    start_new_thread(threaded, (client_socket, addr))
+
+server_socket.close()
+
+
+multi-client
+
+import socket
+
+HOST = '127.0.0.1'
+PORT = 9999
+
+client_socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+
+client_socket.connect((HOST, PORT))
+
+while True:
+
+    message = input('EnterMessage:')
+    if message == 'quit':
+        break
+
+    client_socket.send(message.encode())
+    data = client_socket.recv(1024)
+
+    print('Received from the server:', repr(data.decode()))
+    
+
+client_socket.close()
+
+아직 다 이해못함

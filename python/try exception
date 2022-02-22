@@ -1,7 +1,0 @@
-try:
-  4/0
-except Exception as ex:    #Exception : 여러가지 오류 포함
-  print(f"error = {ex}")
- 
--> division by zero
-

@@ -58,7 +58,7 @@ while True:
     if message == 'quit':
         break
 
-    client_socket.send(message.encode()) #문자 인코딩(utf-8등 str 데이터를 binnary
+    client_socket.send(message.encode()) #문자 인코딩(utf-8등 str 데이터를 binnary 
     data = client_socket.recv(1024)
 
     print('Received from the server:', repr(data.decode()))

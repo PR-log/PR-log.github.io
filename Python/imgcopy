@@ -1,7 +1,7 @@
 파일 10000개 복사해서 다른폴더로 카피
 
 
-
+ 
 import os
 import time
 import shutil

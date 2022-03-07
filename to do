@@ -15,3 +15,4 @@ os 모듈
 numpy
 con.py
 pil.py
+os path join

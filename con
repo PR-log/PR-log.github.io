@@ -1,0 +1,32 @@
+import numpy as np
+import os 
+import cv2
+
+def get_2x2_image(src_path, dst_path):
+    print("123")
+    # Step1 1. read all files in src_path
+    for i in range(278800, 283012):
+        img1_s = "00232064_" + str(i*2)
+    print(img1_s)
+    img1_n = os.path.join(src_path, img1_s)
+    img1_f = os.path.join(src_path, img1_n)
+    img1 = cv2.imread(img1_f)
+
+    # Step 2. src_path의 모든 파일에 대해서
+    # 
+    for file in files:
+        pass 
+    
+    pass
+    print("asd")
+
+
+if __name__ == "__main__":
+    
+    src_path = "/home/jee/concat/00232064"
+    dst_path = "/home/jee/concat/result"
+    try:
+        get_2x2_image
+        print("asdf")
+    except Exception as ex:
+        print(f"Error : {ex}")

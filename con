@@ -6,7 +6,8 @@ def get_2x2_image(src_path, dst_path):
     print("123")
     # Step1 1. read all files in src_path
     for i in range(278800, 283012):
-        img1_s = "00232064_" + str(i*2)
+        img1_s = "00232064_" + str(i*2) + ".jpg"
+        
     print(img1_s)
     img1_n = os.path.join(src_path, img1_s)
     img1_f = os.path.join(src_path, img1_n)

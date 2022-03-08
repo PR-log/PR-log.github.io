@@ -7,11 +7,23 @@ def get_2x2_image(src_path, dst_path):
     # Step1 1. read all files in src_path
     for i in range(278800, 283012):
         img1_s = "00232064_" + str(i*2) + ".jpg"
+        img2_s = "00232064_" + str(i*2+1) + ".jpg"
+    
+    for i in range(img3_1, img3_end):
+        img3_s = "00~_" + str(i*2) + ".jpg"
+        img4_s = "00~_" + str(i*2+1) + ".jpg"
         
     print(img1_s)
-    img1_n = os.path.join(src_path, img1_s)
-    img1_f = os.path.join(src_path, img1_n)
-    img1 = cv2.imread(img1_f)
+    
+    img1_f = os.path.join(src_path, img1_s)
+    img2_f = os.path.join(src_path, img2_s)
+    img3_f = os.path.join(src_path, img3_s)
+    img4_f = os.path.join(src_path, img4_s)
+    
+    
+    img1 = cv2.imread(img1_f, READ_ANYCOLOR)
+    img2 = cv2.imread(img2_f, READ_ANYCOLOR)
+    
 
     # Step 2. src_path의 모든 파일에 대해서
     # 

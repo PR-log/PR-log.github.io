@@ -1,0 +1,68 @@
+from cv2 import IMREAD_ANYCOLOR
+import numpy as np
+import os 
+import cv2
+from PIL import Image
+
+def get_2x2_image(src_path:str, dst_path:str):
+    """
+    src_path  : str, source directory 
+    level     : int
+    last_path : last_past of src_path
+    (full src_path = src_path/level/last_path)
+    dst_path  : destination path
+ 
+    """
+    # full src path
+    #full_src_path = os.path.join(src_path, str(level), last_path)
+    files = os.listdir(src_path)
+    files = [file for file in files if file.endswith(".jpg")]
+    files = sorted(files)
+
+
+    
+    for i in files:
+        src_level = int(i[0:8])
+        file_level = i[9:17]
+
+        # make dst path
+        if not os.path.exists(dst_path + "/00" + str((src_level)*4)):
+            os.makedirs(dst_path + "/00" + str((src_level)*4))
+
+        src2_path = "/home/jee/Data/vworld_2020/16"
+        src2_fold1 = os.path.join(src2_path, "00" + str(src_level*2))
+        fold1_file_start = "00" + str(src_level*2)
+        src2_fold2 = os.path.join(src2_path, "00" + str(src_level*2+1))
+        fold2_file_start = "00" + str(src_level*2+1)
+
+
+        im0 = cv2.imread(src2_fold1 + "/" + fold1_file_start + "_00" + str(int(file_level)*2) + ".jpg", IMREAD_ANYCOLOR)
+        im1 = cv2.imread(src2_fold1 + "/" +fold1_file_start + "_00" + str(int(file_level)*2+1) + ".jpg", IMREAD_ANYCOLOR)
+        im2 = cv2.imread(src2_fold2 + "/" +fold2_file_start + "_00" + str(int(file_level)*2) + ".jpg", IMREAD_ANYCOLOR)
+        im3 = cv2.imread(src2_fold2 + "/" + fold2_file_start + "_00" + str(int(file_level)*2+1) + ".jpg", IMREAD_ANYCOLOR)
+        
+        im01 = np.concatenate((im0, im1), axis = 1)
+        im23 = np.concatenate((im2, im3), axis = 1)
+        im0123 = np.concatenate((im23, im01), axis = 0)
+        
+
+        im = Image.fromarray(im0123)
+        im.save(dst_path +  "/00" + str(src_level*4) + "/00" + str(src_level*4) + "_0" + str(int(file_level))*4 + ".jpg")
+        print(int(file_level)*4)
+    
+        
+
+    
+
+
+
+
+if __name__ == "__main__":
+    
+    src_path = "/home/jee/Data/vworld_2020/15/00116032"
+    dst_path = "/home/jee/Data/vworld_2020/17"
+    try:
+        get_2x2_image(src_path, dst_path)
+        print("DONE")
+    except Exception as ex:
+        print(f"Error : {ex}")
